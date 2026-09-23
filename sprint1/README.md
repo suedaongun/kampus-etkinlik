@@ -3,8 +3,8 @@
 Bu proje yalnızca semantik HTML etiketleri kullanılarak geliştirilmiştir (CSS ve JS içermez).
 
 ## Canlı Yayın Adresi
-- Canlı URL: https://sprint1-kampus-etkinlik.vercel.app (Vercel adresinizi buraya yapıştırın)
-
+- Canlı URL:  (Vercel adresinizi buraya yapıştırın)
+https://kampus-etkinlik-ze44.vercel.app/
 ## Kullanılan Sayfalar
 - `index.html`: Giriş ve yaklaşan etkinlikler
 - `etkinlikler.html`: Etkinlik tablosu ve aylık takvim
