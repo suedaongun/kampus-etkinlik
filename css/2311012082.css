@@ -179,3 +179,9 @@ footer {
     padding: 0.5rem;
   }
 }
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border: 2px solid var(--renk-hata, #c62828) !important;
+  background-color: var(--renk-hata-zemin, #ffebee) !important;
+}
