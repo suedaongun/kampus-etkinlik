@@ -4,34 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kampüs Etkinlikleri — Ana Sayfa</title>
-  <link rel="stylesheet" href="css/20231047.css">
+  
+  <!-- Öğrenci numarana ait CSS dosyan -->
+  <link rel="stylesheet" href="css/2311012082.css">
+  
+  <!-- Sprint 3: type="module" ile event-list.js modülü -->
   <script type="module" src="js/event-list.js"></script>
 </head>
 <body>
-  <div class="sayfa-kapsayici">
-    <header class="site-header">
-      <h1 class="site-baslik">Kampüs Etkinlikleri</h1>
-      <p class="site-alt-aciklama">Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.</p>
-      <nav class="ana-menu">
-        <a href="index.html" class="aktif">Ana Sayfa</a>
-        <a href="etkinlikler.html">Etkinlikler</a>
-        <a href="etkinlik-ekle.html">Ekle</a>
-      </nav>
-    </header>
 
-    <main class="ana-icerik">
-      <h2 class="sayfa-basligi">Yaklaşan 2 Etkinlik</h2>
-      <!-- data-limit="2" sayesinde JS yalnızca en yakın 2 etkinliği listeler -->
-      <section id="etkinlik-listesi" class="etkinlik-listesi iki-sutun" data-limit="2"></section>
+  <header class="site-header">
+    <h1 class="site-baslik">Kampüs Etkinlikleri</h1>
+    <p class="site-alt-aciklama">Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.</p>
+    
+    <!-- Menüde Güncelle linki YOK; yalnızca 3 link var (Slayt 6 & 11) -->
+    <nav class="ana-menu">
+      <a href="index.html" class="aktif">Ana Sayfa</a>
+      <a href="etkinlikler.html">Etkinlikler</a>
+      <a href="etkinlik-ekle.html">Ekle</a>
+    </nav>
+  </header>
 
-      <div style="margin-top: 1.2rem;">
-        <a href="etkinlikler.html" class="btn-link" style="display:inline-block; padding: 0.6rem 1.2rem; background: var(--renk-ana); color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold;">Tüm etkinlikleri gör →</a>
-      </div>
-    </main>
+  <main class="ana-icerik">
+    <h2 class="sayfa-basligi">Yaklaşan 2 Etkinlik</h2>
 
-    <footer class="site-footer">
-    <p> Sueda Ongun · 2311012082 · 2026</p> 
-    </footer>
-  </div>
+    <!-- 
+      Adım 3 & 5: Elle yazılmış kartlar silindi, boş container bırakıldı.
+      data-limit="2" sayesinde JS yalnızca en yakın 2 etkinliği tarihe göre sıralayıp buraya basar.
+    -->
+    <section id="etkinlik-listesi" class="etkinlik-grid-iki" data-limit="2"></section>
+
+    <!-- Slayt 8'deki "Tüm etkinlikleri gör" butonu -->
+    <div style="margin-top: 1.5rem;">
+      <a href="etkinlikler.html" style="display: inline-block; background-color: var(--renk-ana); color: #ffffff; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: var(--kose, 8px); font-weight: bold;">
+        Tüm etkinlikleri gör
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    Sueda Ongun · 2311012082 · 2026
+  </footer>
+
 </body>
 </html>
