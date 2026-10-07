@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tüm Etkinlikler — Kampüs Etkinlikleri</title>
-  <link rel="stylesheet" href="css/20231047.css">
+  <title>Tüm Etkinlikler | Kampüs Etkinlikleri</title>
+  <link rel="stylesheet" href="css/2311012082.css">
   <script type="module" src="js/event-list.js"></script>
 </head>
 <body>
@@ -20,29 +20,29 @@
     </header>
 
     <main class="ana-icerik">
-      <!-- Adım 6: Filtre Formu -->
-      <form id="filtre-formu" class="filtre-kutusu" onsubmit="event.preventDefault();" style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:1rem; margin-bottom:1rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
-        <div style="display:flex; flex-direction:column; gap:0.4rem;">
-          <label for="arama" style="font-weight:bold; color:var(--renk-ana);">Etkinlik ara</label>
-          <input type="search" id="arama" placeholder="Örn. atölye, kariyer..." style="padding:0.6rem; border:1px solid #ddd; border-radius:6px; font-family:inherit;">
+      <!-- Filtre Formu (Slayt Adım 6) -->
+      <form id="filtre-formu" class="filtre-kutusu" onsubmit="event.preventDefault();" style="display: flex; flex-wrap: wrap; gap: 1rem; background: #fff; padding: 1rem; border-radius: var(--kose); border: 1px solid #ddd; margin-bottom: 1rem;">
+        <div style="flex: 2; min-width: 200px; display: flex; flex-direction: column; gap: 0.3rem;">
+          <label for="arama" style="font-weight: bold; color: var(--renk-ana);">Etkinlik ara</label>
+          <input type="search" id="arama" placeholder="Örn. atölye, kariyer..." style="padding: 0.6rem; border: 1px solid #ccc; border-radius: var(--kose);">
         </div>
-        <div style="display:flex; flex-direction:column; gap:0.4rem;">
-          <label for="kategori-filtre" style="font-weight:bold; color:var(--renk-ana);">Kategori</label>
-          <select id="kategori-filtre" style="padding:0.6rem; border:1px solid #ddd; border-radius:6px; font-family:inherit;">
+        <div style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 0.3rem;">
+          <label for="kategori-filtre" style="font-weight: bold; color: var(--renk-ana);">Kategori</label>
+          <select id="kategori-filtre" style="padding: 0.6rem; border: 1px solid #ccc; border-radius: var(--kose);">
             <option value="">Tümü</option>
           </select>
         </div>
       </form>
 
-      <!-- Adım 7: Sonuç Satırı -->
-      <p id="sonuc" style="font-weight:bold; color:var(--renk-ana); margin-bottom:1rem;"></p>
+      <!-- Sonuç Metni (Slayt Adım 7) -->
+      <p id="sonuc" style="font-weight: bold; color: var(--renk-ana); margin-bottom: 1rem;"></p>
 
-      <!-- 6 kart JS ile buraya basılır -->
-      <section id="etkinlik-listesi" class="etkinlik-listesi uc-sutun"></section>
+      <!-- 6 Kartın JS ile basılacağı grid -->
+      <section id="etkinlik-listesi" class="etkinlik-grid"></section>
     </main>
 
-    <footer class="site-footer">
-     <p> Sueda Ongun · 2311012082 · 2026</p> 
+    <footer>
+       Sueda Ongun· 2311012082 · 2026
     </footer>
   </div>
 </body>
