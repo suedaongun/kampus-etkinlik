@@ -1,0 +1,244 @@
+:root {
+  --renk-ana: #2e7d32;
+  --renk-zemin: #f4f6f8;
+  --kose: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--renk-zemin);
+  color: #1f2937;
+  line-height: 1.5;
+}
+
+.site-header {
+  background-color: var(--renk-ana);
+  color: white;
+  padding: 2rem 1.5rem;
+}
+
+.site-baslik {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.site-alt-aciklama {
+  opacity: 0.9;
+  margin-bottom: 1.2rem;
+}
+
+.ana-menu {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.ana-menu button {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: var(--kose);
+  font-weight: 500;
+}
+
+.ana-menu button[aria-current="page"],
+.ana-menu button.aktif {
+  background-color: white;
+  color: var(--renk-ana);
+  font-weight: bold;
+}
+
+.ana-icerik {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.sayfa-basligi {
+  margin-bottom: 1.2rem;
+  color: var(--renk-ana);
+}
+
+.etkinlik-listesi {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.kart {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-top: 4px solid var(--renk-ana);
+  border-radius: var(--kose);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kart h2, .kart h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.kart-etiket {
+  display: inline-block;
+  background: #e8f5e9;
+  color: var(--renk-ana);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  width: fit-content;
+}
+
+.kart-bilgi {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.4rem;
+}
+
+.kart-link, .btn-link {
+  background: transparent;
+  color: var(--renk-ana);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
+  text-align: left;
+}
+
+.btn-yesil {
+  display: inline-block;
+  background-color: var(--renk-ana);
+  color: white !important;
+  padding: 0.65rem 1.3rem;
+  text-decoration: none;
+  border-radius: var(--kose);
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.filtre-kutusu {
+  background: white;
+  padding: 1.2rem;
+  border-radius: var(--kose);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.filtre-grubu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filtre-grubu label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--renk-ana);
+}
+
+.filtre-grubu input, .filtre-grubu select, .form input, .form select, .form textarea {
+  padding: 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--kose);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.detay-kapsayici {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detay-afis {
+  flex: 1;
+  min-width: 280px;
+}
+
+.afis-kutu {
+  background: #1e293b;
+  color: white;
+  border: 2px solid #ea580c;
+  border-radius: var(--kose);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.detay-kunye {
+  flex: 1;
+  min-width: 280px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--kose);
+  padding: 1.2rem;
+}
+
+.kunye-listesi {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  row-gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--kose);
+  border: 1px solid #e5e7eb;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-grubu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-grubu label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 3rem;
+}
+
+.hata-kutusu {
+  border: 2px solid #c62828;
+  background: #ffebee;
+  color: #c62828;
+  padding: 1.2rem;
+  border-radius: var(--kose);
+  margin-bottom: 1.2rem;
+}
