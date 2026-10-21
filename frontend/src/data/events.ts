@@ -1,66 +1,27 @@
+// src/data/events.ts
 import type { CampusEvent } from "../types/campus-event";
 
-export const events: CampusEvent[] = [
+export const initialEvents: CampusEvent[] = [
   {
     id: "event-1",
     title: "Kariyer Günleri 2026",
     category: "Seminer",
-    date: "12-10-2026",
+    capacity: 120,
+    date: "2026-10-25",
     time: "14:00",
     location: "A Blok Konferans Salonu",
-    capacity: 100,
-    description: "Mezunlarla kariyer söyleşileri ve şirket standları.",
+    description: "Mezunlarla söyleşiler ve sektör temsilcileri ile buluşma.",
     image: "/afis.svg"
   },
   {
     id: "event-2",
-    title: "Robotik Atölyesi",
+    title: "Robotik Kodlama Atölyesi",
     category: "Atölye",
-    date: "20-10-2026",
-    time: "10:00",
-    location: "Bilgisayar Laboratuvarı 2",
-    capacity: 20,
-    description: "Arduino ile çizgi izleyen robot yapımı, başlangıç seviyesi.",
-    image: "/afis.svg"
-  },
-  {
-    id: "event-3",
-    title: "Siber Güvenlik Söyleşisi",
-    category: "Söyleşi",
-    date: "27-10-2026",
-    time: "13:00",
-    location: "B Blok Amfi 1",
-    capacity: 50,
-    description: "Sektörden bir uzmanla güvenlik kariyeri üzerine sohbet."
-  },
-  {
-    id: "event-4",
-    title: "Web Tasarım Atölyesi",
-    category: "Atölye",
-    date: "03-11-2026",
-    time: "15:00",
-    location: "Bilgisayar Laboratuvarı 1",
     capacity: 30,
-    description: "HTML ve CSS ile ilk kişisel sayfanı yap."
-  },
-  {
-    id: "event-5",
-    title: "Yapay Zeka ve Gelecek",
-    category: "Seminer",
-    date: "12-11-2026",
-    time: "11:00",
-    location: "A Blok Konferans Salonu",
-    capacity: 120,
-    description: "Büyük dil modelleri ve üretken yapay zekanın iş dünyasına etkileri."
-  },
-  {
-    id: "event-6",
-    title: "Girişimcilik 101",
-    category: "Söyleşi",
-    date: "24-11-2026",
-    time: "14:30",
-    location: "Teknokent Seminer Salonu",
-    capacity: 40,
-    description: "Üniversite yıllarında start-up kurma ve ilk yatırımı bulma adımları."
+    date: "2026-11-02",
+    time: "10:30",
+    location: "B Blok Lab 2",
+    description: "Arduino ve temel sensör uygulamaları pratik çalışması.",
+    image: "/afis.svg"
   }
 ];

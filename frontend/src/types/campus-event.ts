@@ -1,3 +1,5 @@
+// src/types/campus-event.ts
+
 export type Category = "Seminer" | "Atölye" | "Söyleşi" | "Yarışma";
 
 export interface CampusEvent {
@@ -11,3 +13,5 @@ export interface CampusEvent {
   description: string;
   image?: string;
 }
+
+export type EventFormData = Omit<CampusEvent, "id">;
