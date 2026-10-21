@@ -1,31 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { EventProvider } from "./context/EventContext";
-import { Header } from "./components/layout/Header";
-import { Footer } from "./components/layout/Footer";
-import { HomePage } from "./pages/HomePage";
-import { EventsPage } from "./pages/EventsPage";
-import { EventDetailPage } from "./pages/EventDetailPage";
-import { EventFormPage } from "./pages/EventFormPage";
-import "./App.css";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import HomePage from "./pages/HomePage";
+import EventsPage from "./pages/EventsPage";
+import EventDetailPage from "./pages/EventDetailPage";
+import EventFormPage from "./pages/EventFormPage";
 
-export default function App() {
+function App() {
   return (
-    <EventProvider>
-      <BrowserRouter>
-        <div className="app-layout">
-          <Header />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/etkinlikler" element={<EventsPage />} />
-              <Route path="/etkinlik/:id" element={<EventDetailPage />} />
-              <Route path="/ekle" element={<EventFormPage mode="create" />} />
-              <Route path="/guncelle/:id" element={<EventFormPage mode="update" />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </EventProvider>
+    <BrowserRouter>
+      <div className="app-container">
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/events/:id" element={<EventDetailPage />} />
+            <Route path="/add-event" element={<EventFormPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
+
+export default App;
