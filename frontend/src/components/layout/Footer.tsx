@@ -1,9 +1,9 @@
-const Footer = () => {
+function Footer() {
   return (
-    <footer className="footer">
-      <p>© 2026 Kampüs Etkinlikleri - Tüm Hakları Saklıdır.</p>
+    <footer>
+      Ad Soyad · 2311012082 · 2026
     </footer>
   );
-};
+}
 
 export default Footer;

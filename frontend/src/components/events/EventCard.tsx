@@ -1,22 +1,33 @@
-import { Link } from "react-router-dom";
 import type { CampusEvent } from "../../types/campus-event";
+import { formatDate } from "../../utils/format-date";
 
 interface EventCardProps {
   event: CampusEvent;
+  onShowDetail: (id: string) => void;
 }
 
-export const EventCard = ({ event }: EventCardProps) => {
+function EventCard({ event, onShowDetail }: EventCardProps) {
   return (
-    <div className="event-card">
-      {event.image && <img src={event.image} alt={event.title} className="event-card-image" style={{ width: "100%", height: "160px", objectFit: "cover", borderRadius: "6px" }} />}
-      <span className="category-badge">{event.category}</span>
-      <h3>{event.title}</h3>
-      <p><strong>Tarih:</strong> {event.date} - {event.time}</p>
-      <p><strong>Konum:</strong> {event.location}</p>
-      <p><strong>Kontenjan:</strong> {event.capacity} kişi</p>
-      <Link to={`/etkinlik/${event.id}`} className="btn-detail" style={{ marginTop: "auto" }}>
-        Detayları Gör
-      </Link>
-    </div>
+    <article className="kart">
+      <div>
+        <span className="kart-etiket">{event.category}</span>
+        <h2>{event.title}</h2>
+        <p className="kart-bilgi">
+          Tarih: {formatDate(event.date)}, {event.time}
+        </p>
+        <p className="kart-bilgi">Yer: {event.location}</p>
+        <p className="kart-bilgi">
+          Kontenjan: {event.capacity ? `${event.capacity} kişi` : "Belirtilmedi"}
+        </p>
+        <p className="kart-bilgi" style={{ marginTop: "0.4rem" }}>
+          {event.description}
+        </p>
+      </div>
+      <button className="kart-link" onClick={() => onShowDetail(event.id)}>
+        Detayları gör
+      </button>
+    </article>
   );
-};
+}
+
+export default EventCard;

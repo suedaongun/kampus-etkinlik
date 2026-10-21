@@ -1,94 +1,98 @@
-import { useState, FormEvent } from "react";
 import type { CampusEvent, Category } from "../../types/campus-event";
 
 interface EventFormProps {
-  initialValues?: Partial<CampusEvent>;
-  onSubmit: (formData: Omit<CampusEvent, "id">) => void;
-  buttonText: string;
+  onSubmit: () => void;
+  event?: CampusEvent;
+  categories?: Category[];
 }
 
-export const EventForm = ({ initialValues, onSubmit, buttonText }: EventFormProps) => {
-  const [title, setTitle] = useState(initialValues?.title || "");
-  const [category, setCategory] = useState<Category>(initialValues?.category || "Seminer");
-  const [capacity, setCapacity] = useState(initialValues?.capacity || 50);
-  const [date, setDate] = useState(initialValues?.date || "");
-  const [time, setTime] = useState(initialValues?.time || "");
-  const [location, setLocation] = useState(initialValues?.location || "");
-  const [description, setDescription] = useState(initialValues?.description || "");
-  const [image, setImage] = useState(initialValues?.image || "");
+const defaultCategories: Category[] = ["Seminer", "Atölye", "Söyleşi", "Yarışma"];
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!title || !date || !time || !location) {
-      alert("Lütfen zorunlu alanları doldurun.");
-      return;
-    }
-    onSubmit({
-      title,
-      category,
-      capacity: Number(capacity),
-      date,
-      time,
-      location,
-      description,
-      image
-    });
-  };
-
+function EventForm({
+  onSubmit,
+  event,
+  categories = defaultCategories,
+}: EventFormProps) {
   return (
-    <form onSubmit={handleSubmit} className="event-form">
-      <div className="form-group">
-        <label>Etkinlik Başlığı *</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-      </div>
+    <>
+      <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "1.2rem" }}>
+        Bu sprintte form sadece görünüm; kayıt yapılmaz.
+      </p>
 
-      <div className="form-row">
-        <div className="form-group">
-          <label>Kategori</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value as Category)}>
-            <option value="Seminer">Seminer</option>
-            <option value="Atölye">Atölye</option>
-            <option value="Söyleşi">Söyleşi</option>
-            <option value="Yarışma">Yarışma</option>
+      <form
+        className="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
+      >
+        <div className="form-grubu">
+          <label htmlFor="title">Etkinlik Adı</label>
+          <input
+            id="title"
+            type="text"
+            placeholder="Örn. Kariyer Günleri 2026"
+            maxLength={80}
+            defaultValue={event ? event.title : ""}
+          />
+        </div>
+
+        <div className="form-grubu">
+          <label htmlFor="category">Kategori</label>
+          <select id="category" defaultValue={event ? event.category : ""}>
+            <option value="">Seçiniz</option>
+            {categories.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
           </select>
         </div>
 
-        <div className="form-group">
-          <label>Kontenjan</label>
-          <input type="number" min="1" value={capacity} onChange={(e) => setCapacity(Number(e.target.value))} required />
-        </div>
-      </div>
-
-      <div className="form-row">
-        <div className="form-group">
-          <label>Tarih *</label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+        <div className="form-grubu">
+          <label htmlFor="date">Tarih</label>
+          <input id="date" type="date" />
         </div>
 
-        <div className="form-group">
-          <label>Saat *</label>
-          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+        <div className="form-grubu">
+          <label htmlFor="time">Saat</label>
+          <input id="time" type="time" />
         </div>
-      </div>
 
-      <div className="form-group">
-        <label>Konum *</label>
-        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
-      </div>
+        <div className="form-grubu">
+          <label htmlFor="location">Yer</label>
+          <input
+            id="location"
+            type="text"
+            placeholder="Örn. A Blok Konferans Salonu"
+            defaultValue={event ? event.location : ""}
+          />
+        </div>
 
-      <div className="form-group">
-        <label>Görsel URL (İsteğe Bağlı)</label>
-        <input type="text" value={image} onChange={(e) => setImage(e.target.value)} placeholder="https://..." />
-      </div>
+        <div className="form-grubu">
+          <label htmlFor="capacity">Kontenjan</label>
+          <input
+            id="capacity"
+            type="number"
+            defaultValue={event ? event.capacity : ""}
+          />
+        </div>
 
-      <div className="form-group">
-        <label>Açıklama</label>
-        <textarea rows={4} value={description} onChange={(e) => setDescription(e.target.value)} />
-      </div>
+        <div className="form-grubu">
+          <label htmlFor="description">Açıklama</label>
+          <textarea
+            id="description"
+            rows={5}
+            defaultValue={event ? event.description : ""}
+          ></textarea>
+        </div>
 
-      <button type="submit" className="btn-submit">
-        {buttonText}
-      </button>
-    </form>
+        <button type="submit" className="btn-yesil" style={{ width: "fit-content" }}>
+          {event ? "Güncelle" : "Kaydet"}
+        </button>
+      </form>
+    </>
   );
-};
+}
+
+export default EventForm;

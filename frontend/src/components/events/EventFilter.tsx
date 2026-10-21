@@ -1,40 +1,50 @@
 import type { Category } from "../../types/campus-event";
 
 interface EventFilterProps {
-  searchTerm: string;
-  onSearchChange: (value: string) => void;
-  selectedCategory: Category | "Hepsi";
-  onCategoryChange: (category: Category | "Hepsi") => void;
+  searchText: string;
+  category: Category | "";
+  categories: Category[];
+  onSearchChange: (text: string) => void;
+  onCategoryChange: (category: Category | "") => void;
 }
 
-const categories: (Category | "Hepsi")[] = ["Hepsi", "Seminer", "Atölye", "Söyleşi", "Yarışma"];
-
-export const EventFilter = ({
-  searchTerm,
+function EventFilter({
+  searchText,
+  category,
+  categories,
   onSearchChange,
-  selectedCategory,
   onCategoryChange,
-}: EventFilterProps) => {
+}: EventFilterProps) {
   return (
-    <div className="filter-bar">
-      <input
-        type="text"
-        placeholder="Etkinlik veya konum ara..."
-        value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
-        className="search-input"
-      />
-      <div className="category-filters">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => onCategoryChange(cat)}
-            className={`filter-btn ${selectedCategory === cat ? "active" : ""}`}
-          >
-            {cat}
-          </button>
-        ))}
+    <div className="filtre-kutusu">
+      <div className="filtre-grubu">
+        <label htmlFor="search">Etkinlik ara</label>
+        <input
+          id="search"
+          type="search"
+          placeholder="Örn. atölye, kariyer..."
+          value={searchText}
+          onChange={(e) => onSearchChange(e.target.value)}
+        />
+      </div>
+
+      <div className="filtre-grubu">
+        <label htmlFor="filter-category">Kategori</label>
+        <select
+          id="filter-category"
+          value={category}
+          onChange={(e) => onCategoryChange(e.target.value as Category | "")}
+        >
+          <option value="">Tümü</option>
+          {categories.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
-};
+}
+
+export default EventFilter;

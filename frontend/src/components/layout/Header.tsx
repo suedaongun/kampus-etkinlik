@@ -1,34 +1,15 @@
-import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import Navigation from "./Navigation";
+interface HeaderProps {
+  title: string;
+  text?: string;
+}
 
-const Header = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    const path = location.pathname;
-
-    if (path === "/") {
-      document.title = "Kampüs Etkinlikleri - Ana Sayfa";
-    } else if (path.startsWith("/events")) {
-      document.title = "Etkinlikler - Kampüs Etkinlikleri";
-    } else if (path.startsWith("/add-event")) {
-      document.title = "Etkinlik Ekle - Kampüs Etkinlikleri";
-    } else {
-      document.title = "Kampüs Etkinlikleri";
-    }
-  }, [location]);
-
+function Header({ title, text }: HeaderProps) {
   return (
-    <header className="navbar">
-      <div className="nav-container">
-        <NavLink to="/" className="logo">
-          🎓 Kampüs Etkinlikleri
-        </NavLink>
-        <Navigation />
-      </div>
+    <header className="site-baslik">
+      <h1>{title}</h1>
+      {text && <p className="site-alt-aciklama">{text}</p>}
     </header>
   );
-};
+}
 
 export default Header;

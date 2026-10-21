@@ -1,57 +1,88 @@
-import { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import type { CampusEvent } from "../../types/campus-event";
-import { useEvents } from "../../context/EventContext";
+import { formatDate } from "../../utils/format-date";
 
 interface EventDetailProps {
   event: CampusEvent;
+  onBack: () => void;
+  onEdit: (id: string) => void;
 }
 
-export const EventDetail = ({ event }: EventDetailProps) => {
-  const navigate = useNavigate();
-  const { deleteEvent } = useEvents();
-
-  // Tahtadaki şart: Sekme (tab) başlığında etkinliğin adının görünmesi
-  useEffect(() => {
-    document.title = `${event.title} | Kampüs Etkinlikleri`;
-    return () => {
-      document.title = "Kampüs Etkinlikleri";
-    };
-  }, [event]);
-
-  const handleDelete = () => {
-    if (window.confirm("Bu etkinliği silmek istediğinize emin misiniz?")) {
-      deleteEvent(event.id);
-      navigate("/etkinlikler");
-    }
-  };
-
+function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
   return (
-    <div className="detail-card" style={{ background: "#fff", padding: "2rem", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
-      {event.image && <img src={event.image} alt={event.title} style={{ width: "100%", maxHeight: "350px", objectFit: "cover", borderRadius: "8px", marginBottom: "1rem" }} />}
-      <span className="category-badge">{event.category}</span>
-      <h1 style={{ marginTop: "0.5rem" }}>{event.title}</h1>
+    <div>
+      <div className="detay-kapsayici">
+        <div className="detay-afis">
+          <div className="afis-kutu">
+            <h2 style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>
+              {event.title}
+            </h2>
+            <p style={{ opacity: 0.8, fontSize: "0.95rem" }}>
+              {formatDate(event.date)} · {event.location}
+            </p>
+          </div>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "0.85rem",
+              color: "#666",
+              marginTop: "0.5rem",
+              fontStyle: "italic",
+            }}
+          >
+            {event.title} afişi
+          </p>
+        </div>
 
-      <div className="detail-info" style={{ margin: "1rem 0", lineHeight: "1.8" }}>
-        <p><strong>Tarih:</strong> {event.date}</p>
-        <p><strong>Saat:</strong> {event.time}</p>
-        <p><strong>Konum:</strong> {event.location}</p>
-        <p><strong>Kontenjan:</strong> {event.capacity} kişi</p>
+        <div className="detay-kunye">
+          <h3 style={{ marginBottom: "1rem", color: "var(--renk-ana)" }}>
+            Etkinlik Künyesi
+          </h3>
+          <dl className="kunye-listesi">
+            <dt style={{ fontWeight: "bold" }}>Tarih</dt>
+            <dd>
+              {formatDate(event.date)}, {event.time}
+            </dd>
+
+            <dt style={{ fontWeight: "bold" }}>Yer</dt>
+            <dd>{event.location}</dd>
+
+            <dt style={{ fontWeight: "bold" }}>Kategori</dt>
+            <dd>{event.category}</dd>
+
+            <dt style={{ fontWeight: "bold" }}>Kontenjan</dt>
+            <dd>
+              {event.capacity ? `${event.capacity} kişi` : "Belirtilmedi"}
+            </dd>
+          </dl>
+        </div>
       </div>
 
-      <p className="detail-description">{event.description}</p>
+      <div
+        style={{
+          borderTop: "1px solid #ddd",
+          paddingTop: "1.2rem",
+          marginBottom: "1.5rem",
+        }}
+      >
+        <h3 style={{ marginBottom: "0.5rem", color: "var(--renk-ana)" }}>
+          Açıklama
+        </h3>
+        <p>{event.description}</p>
+      </div>
 
-      <div className="detail-actions" style={{ display: "flex", gap: "1rem", marginTop: "2rem" }}>
-        <button onClick={() => navigate(`/guncelle/${event.id}`)} className="btn-edit">
-          Düzenle
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <button className="btn-yesil" onClick={onBack}>
+          ← Listeye dön
         </button>
-        <button onClick={handleDelete} className="btn-delete">
-          Sil
+        <button
+          className="btn-yesil"
+          onClick={() => onEdit(event.id)}
+        >
+          Bu etkinliği güncelle
         </button>
-        <Link to="/etkinlikler" className="btn-back" style={{ marginLeft: "auto" }}>
-          ← Listeye Dön
-        </Link>
       </div>
     </div>
   );
-};
+}
+
+export default EventDetail;
