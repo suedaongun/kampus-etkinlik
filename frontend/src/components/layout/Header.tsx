@@ -3,14 +3,12 @@ import { NavLink, useLocation } from "react-router-dom";
 export const Header = () => {
   const location = useLocation();
 
-  // O anki URL'ye (pathname) göre üstte görünecek başlığı belirliyoruz
   const getPageTitle = () => {
     const path = location.pathname;
 
-    if (path === "/") return "🎓 Kampüs Etkinlikleri - Ana Sayfa";
+    if (path === "/") return "🎓 Kampüs Etkinlikleri";
     if (path.startsWith("/etkinlikler")) return "📅 Etkinlik Listesi";
-    if (path.startsWith("/ekle")) return "➕ Yeni Etkinlik Ekle";
-    if (path.includes("robotik")) return "🤖 Robotik Etkinlikleri";
+    if (path.startsWith("/ekle")) return "➕ Etkinlik Ekle";
 
     return "🎓 Kampüs Etkinlikleri";
   };
