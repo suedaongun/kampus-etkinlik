@@ -1,23 +1,28 @@
+import { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const location = useLocation();
 
-  const getPageTitle = () => {
+  useEffect(() => {
     const path = location.pathname;
 
-    if (path === "/") return "🎓 Kampüs Etkinlikleri";
-    if (path.startsWith("/etkinlikler")) return "📅 Etkinlik Listesi";
-    if (path.startsWith("/ekle")) return "➕ Etkinlik Ekle";
-
-    return "🎓 Kampüs Etkinlikleri";
-  };
+    if (path === "/") {
+      document.title = "Kampüs Etkinlikleri";
+    } else if (path.startsWith("/etkinlikler")) {
+      document.title = "Etkinlikler | Kampüs Etkinlikleri";
+    } else if (path.startsWith("/ekle")) {
+      document.title = "Etkinlik Ekle | Kampüs Etkinlikleri";
+    } else {
+      document.title = "Kampüs Etkinlikleri";
+    }
+  }, [location]);
 
   return (
     <header className="navbar">
       <div className="nav-container">
         <NavLink to="/" className="logo">
-          {getPageTitle()}
+          🎓 Kampüs Etkinlikleri
         </NavLink>
         <nav className="nav-links">
           <NavLink to="/" end className={({ isActive }) => (isActive ? "active" : "")}>
