@@ -1,87 +1,55 @@
+import { Link } from "react-router-dom";
 import type { CampusEvent } from "../../types/campus-event";
 import { formatDate } from "../../utils/format-date";
 
 interface EventDetailProps {
   event: CampusEvent;
-  onBack: () => void;
-  onEdit: (id: string) => void;
 }
 
-function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
+function EventDetail({ event }: EventDetailProps) {
   return (
-    <div>
-      <div className="detay-kapsayici">
-        <div className="detay-afis">
-          <div className="afis-kutu">
-            <h2 style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>
-              {event.title}
-            </h2>
-            <p style={{ opacity: 0.8, fontSize: "0.95rem" }}>
-              {formatDate(event.date)} · {event.location}
-            </p>
-          </div>
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "0.85rem",
-              color: "#666",
-              marginTop: "0.5rem",
-              fontStyle: "italic",
-            }}
-          >
-            {event.title} afişi
-          </p>
-        </div>
-
-        <div className="detay-kunye">
-          <h3 style={{ marginBottom: "1rem", color: "var(--renk-ana)" }}>
-            Etkinlik Künyesi
-          </h3>
-          <dl className="kunye-listesi">
-            <dt style={{ fontWeight: "bold" }}>Tarih</dt>
+    <article className="detay">
+      <div className="detay-ust">
+        {event.image && (
+          <figure>
+            <img
+              src={event.image}
+              alt={`${event.title} afişi`}
+              width="480"
+              height="270"
+            />
+            <figcaption>{event.title} afişi</figcaption>
+          </figure>
+        )}
+        <section className="kunye">
+          <h2>Etkinlik Künyesi</h2>
+          <dl>
+            <dt>Tarih</dt>
             <dd>
-              {formatDate(event.date)}, {event.time}
+              <time dateTime={`${event.date}T${event.time}`}>
+                {formatDate(event.date)}, {event.time}
+              </time>
             </dd>
-
-            <dt style={{ fontWeight: "bold" }}>Yer</dt>
+            <dt>Yer</dt>
             <dd>{event.location}</dd>
-
-            <dt style={{ fontWeight: "bold" }}>Kategori</dt>
+            <dt>Kategori</dt>
             <dd>{event.category}</dd>
-
-            <dt style={{ fontWeight: "bold" }}>Kontenjan</dt>
-            <dd>
-              {event.capacity ? `${event.capacity} kişi` : "Belirtilmedi"}
-            </dd>
+            <dt>Kontenjan</dt>
+            <dd>{event.capacity} kişi</dd>
           </dl>
-        </div>
+        </section>
       </div>
-
-      <div
-        style={{
-          borderTop: "1px solid #ddd",
-          paddingTop: "1.2rem",
-          marginBottom: "1.5rem",
-        }}
-      >
-        <h3 style={{ marginBottom: "0.5rem", color: "var(--renk-ana)" }}>
-          Açıklama
-        </h3>
-        <p>{event.description}</p>
-      </div>
-
-      <div style={{ display: "flex", gap: "1rem" }}>
-        <button className="btn-yesil" onClick={onBack}>
+      <h2>Açıklama</h2>
+      <p>{event.description}</p>
+      <p className="form-butonlar">
+        <Link className="buton" to="/events">
           ← Listeye dön
-        </button>
-        <button
-          className="btn-yesil"
-          onClick={() => onEdit(event.id)}
-        >
+        </Link>
+        <Link className="buton" to={`/admin/${event.id}/edit`}>
           Bu etkinliği güncelle
-        </button>
-      </div>
-    </div>
+        </Link>
+      </p>
+    </article>
   );
 }
 

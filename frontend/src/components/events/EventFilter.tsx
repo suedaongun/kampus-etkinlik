@@ -2,36 +2,35 @@ import type { Category } from "../../types/campus-event";
 
 interface EventFilterProps {
   searchText: string;
+  onSearchChange: (text: string) => void;
   category: Category | "";
   categories: Category[];
-  onSearchChange: (text: string) => void;
   onCategoryChange: (category: Category | "") => void;
 }
 
 function EventFilter({
   searchText,
+  onSearchChange,
   category,
   categories,
-  onSearchChange,
   onCategoryChange,
 }: EventFilterProps) {
   return (
-    <div className="filtre-kutusu">
-      <div className="filtre-grubu">
-        <label htmlFor="search">Etkinlik ara</label>
+    <form className="filtre" role="search" onSubmit={(e) => e.preventDefault()}>
+      <p className="alan">
+        <label htmlFor="arama">Etkinlik ara</label>
         <input
-          id="search"
           type="search"
-          placeholder="Örn. atölye, kariyer..."
+          id="arama"
+          placeholder="Örn. atölye, kariyer"
           value={searchText}
           onChange={(e) => onSearchChange(e.target.value)}
         />
-      </div>
-
-      <div className="filtre-grubu">
-        <label htmlFor="filter-category">Kategori</label>
+      </p>
+      <p className="alan">
+        <label htmlFor="kategori-filtre">Kategori</label>
         <select
-          id="filter-category"
+          id="kategori-filtre"
           value={category}
           onChange={(e) => onCategoryChange(e.target.value as Category | "")}
         >
@@ -42,8 +41,8 @@ function EventFilter({
             </option>
           ))}
         </select>
-      </div>
-    </div>
+      </p>
+    </form>
   );
 }
 

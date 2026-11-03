@@ -1,14 +1,14 @@
 import type { CampusEvent } from "../types/campus-event";
 
-export const events: CampusEvent[] = [
+export const initialEvents: CampusEvent[] = [
   {
     id: "event-1",
     title: "Kariyer Günleri 2026",
     category: "Seminer",
-    date: "12-10-2026",
+    capacity: 100,
+    date: "2026-10-12",
     time: "14:00",
     location: "A Blok Konferans Salonu",
-    capacity: 100,
     description: "Mezunlarla kariyer söyleşileri ve şirket standları.",
     image: "/afis.svg"
   },
@@ -16,51 +16,52 @@ export const events: CampusEvent[] = [
     id: "event-2",
     title: "Robotik Atölyesi",
     category: "Atölye",
-    date: "20-10-2026",
+    capacity: 20,
+    date: "2026-10-20",
     time: "10:00",
     location: "Bilgisayar Laboratuvarı 2",
-    capacity: 20,
-    description: "Arduino ile çizgi izleyen robot yapımı, başlangıç seviyesi.",
-    image: "/afis.svg"
+    description: "Arduino ile çizgi izleyen robot yapımı, başlangıç seviyesi."
   },
   {
     id: "event-3",
     title: "Siber Güvenlik Söyleşisi",
     category: "Söyleşi",
-    date: "27-10-2026",
+    capacity: 50,
+    date: "2026-10-27",
     time: "13:00",
     location: "B Blok Amfi 1",
-    capacity: 50,
     description: "Sektörden bir uzmanla güvenlik kariyeri üzerine sohbet."
   },
   {
     id: "event-4",
     title: "Web Tasarım Atölyesi",
     category: "Atölye",
-    date: "03-11-2026",
+    capacity: 30,
+    date: "2026-11-03",
     time: "15:00",
     location: "Bilgisayar Laboratuvarı 1",
-    capacity: 30,
     description: "HTML ve CSS ile ilk kişisel sayfanı yap."
   },
   {
     id: "event-5",
-    title: "Yapay Zeka ve Gelecek",
-    category: "Seminer",
-    date: "12-11-2026",
-    time: "11:00",
-    location: "A Blok Konferans Salonu",
-    capacity: 120,
-    description: "Büyük dil modelleri ve üretken yapay zekanın iş dünyasına etkileri."
+    title: "Kodlama Yarışması",
+    category: "Yarışma",
+    capacity: 10,
+    date: "2026-11-10",
+    time: "09:30",
+    location: "Kütüphane Etkinlik Alanı",
+    description: "Üç kişilik takımlarla dört saatlik algoritma yarışması."
   },
   {
     id: "event-6",
-    title: "Girişimcilik 101",
-    category: "Söyleşi",
-    date: "24-11-2026",
+    title: "Yapay Zekâ Semineri",
+    category: "Seminer",
+    capacity: 50,
+    date: "2026-11-17",
     time: "14:30",
-    location: "Teknokent Seminer Salonu",
-    capacity: 40,
-    description: "Üniversite yıllarında start-up kurma ve ilk yatırımı bulma adımları."
+    location: "A Blok Konferans Salonu",
+    description: "Büyük dil modelleri nasıl çalışır? Temel kavramlar ve örnekler."
   }
 ];
+
+export const events = initialEvents;

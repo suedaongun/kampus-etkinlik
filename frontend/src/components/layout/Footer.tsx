@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      Ad Soyad · 2311012082 · 2026
+      <p>Sueda Ongun · 2311012082 · 2026</p>
     </footer>
   );
 }

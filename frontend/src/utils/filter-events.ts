@@ -1,5 +1,4 @@
 import type { CampusEvent, Category } from "../types/campus-event";
-import { formatDate } from "./format-date";
 
 export function searchEvents(list: CampusEvent[], text: string): CampusEvent[] {
   const q = text.trim().toLocaleLowerCase("tr-TR");
@@ -25,5 +24,3 @@ export function findEventById(
 ): CampusEvent | undefined {
   return list.find((e) => e.id === id);
 }
-
-export { formatDate };
