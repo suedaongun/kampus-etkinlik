@@ -34,3 +34,4 @@ export function validateEvent(data: EventFormData): EventFormErrors {
 
   return errors;
 }
+
