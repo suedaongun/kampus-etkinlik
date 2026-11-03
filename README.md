@@ -1,53 +1,24 @@
-# Kampüs Etkinlikleri — Sprint 6 ve Vize Teslimi
+# Kampüs Etkinlikleri — Vize Projesi (Sprint 6)
 
-**Öğrenci:** Sueda Ongun  
-**Öğrenci No:** 2311012082  
+- **Canlı Yayın Linki (Vercel):** https://kampus-etkinlik-krdd.vercel.app/ *(veya https://suedaongun-frontend.vercel.app)*
+- **GitHub Deposu:** https://github.com/suedaongun/kampus-etkinlik
+- **Öğrenci:** Sueda Ongun
+- **Öğrenci No:** 2311012082 (Tema Tonu: `--ton: 082`)
 
-## 🌐 Canlı Vercel Adresi
-- **Canlı Yayın:** [https://kampus-etkinlik-krdd.vercel.app/](https://kampus-etkinlik-krdd.vercel.app/)
-- **Alternatif:** [https://suedaongun-frontend.vercel.app/](https://suedaongun-frontend.vercel.app/)
+## 📌 Vize Projesi Kontrol Listesi & Karşılanan Maddeler
 
----
-
-## 🛠️ Kurulum ve Çalıştırma
-
-Projeyi yerel ortamda çalıştırmak için:
-
-```bash
-# frontend klasörüne geçiş yapın
-cd frontend
-
-# Bağımlılıkları yükleyin
-npm install
-
-# Geliştirme sunucusunu başlatın
-npm run dev
-
-# Üretim derlemesi (Build) oluşturun
-npm run build
-```
-
----
-
-## 🗺️ Route Haritası (10 Sayfa)
-
-| Adres | Sayfa Bileşeni | Açıklama |
-|---|---|---|
-| `/` | `HomePage` | Yaklaşan 2 etkinlik ve tüm etkinliklere geçiş |
-| `/events` | `EventsPage` | Arama ve kategori filtreli tüm etkinlikler |
-| `/events/:id` | `EventDetailPage` | Seçilen etkinliğin detayları, afişi ve künyesi |
-| `/admin` | `AdminPage` | Yönetim paneli tablosu, silme ve düzenleme bağlantıları |
-| `/admin/new` | `AddEventPage` | Yeni etkinlik ekleme formu |
-| `/admin/:id/edit` | `EditEventPage` | Mevcut etkinliği güncelleme formu |
-| `/login` | `LoginPage` | Giriş sayfası ve form doğrulaması |
-| `/register` | `RegisterPage` | Kayıt olma sayfası ve form doğrulaması |
-| `/forgot-password` | `ForgotPasswordPage` | Şifre sıfırlama sayfası ve form doğrulaması |
-| `*` | `NotFoundPage` | Tanımsız adresler ve bulunamayan etkinlikler |
-
----
-
-## 📁 Mimari ve Özellikler
-- **React Router v7:** `BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`, `useParams`, `useNavigate`, `useLocation`, `matchPath`.
-- **React Context:** `EventsContext` ve `useEvents` hook'u ile global state yönetimi (Ekle, Güncelle, Sil).
-- **Form Doğrulama:** `validateEvent` saf fonksiyonu, dinamik hata mesajları ve `aria-invalid` erişilebilirlik desteği.
-- **Duyarlı Tasarım (Responsive):** Masaüstünde ızgara/tablo, mobil cihazlarda kart düzeni ve dokunma dostu kontroller (`44px` dokunma hedefi).
+| # | Madde | Durum |
+|---|-------|:-----:|
+| 1 | Tüm linkler çalışıyor | ✅ |
+| 2 | Tüm sayfalar hazır | ✅ |
+| 3 | Klasör ve dosya yapısı oluşturuldu | ✅ |
+| 4 | 10 adet router tanımlandı | ✅ |
+| 5 | Context kullanıldı ve tüm sayfalara bağlandı | ✅ |
+| 6 | Ekle, sil, güncelle ve silmeden önce onay çalışıyor; etkisi diğer sayfalarda görülüyor | ✅ |
+| 7 | Son çalışır proje GitHub'a gönderildi | ✅ |
+| 8 | Proje Vercel'de isimsoyisim-frontend.vercel.app adresiyle yayında | ✅ |
+| 9 | README yazıldı, Vercel linki README'ye eklendi | ✅ |
+| 10 | Mobil görünüm doğru çalışıyor | ✅ |
+| 11 | CSS bozulması yok. Sayfa düzgün görünüyor | ✅ |
+| 12 | Arama ve filtreleme çalışıyor | ✅ |
+| 13 | Form doğrulama çalışıyor (etkinlik formu, giriş, kayıt, şifremi unuttum) | ✅ |
