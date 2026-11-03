@@ -1,6 +1,6 @@
 # Kampüs Etkinlikleri — Vize Projesi (Sprint 6)
 
-- **Canlı Yayın Linki (Vercel):** https://kampus-etkinlik-krdd.vercel.app/ *(veya https://suedaongun-frontend.vercel.app)*
+- **Canlı Yayın Linki (Vercel):** https://suedaongun-frontend.vercel.app/ *(veya https://kampus-etkinlik-krdd.vercel.app)*
 - **GitHub Deposu:** https://github.com/suedaongun/kampus-etkinlik
 - **Öğrenci:** Sueda Ongun
 - **Öğrenci No:** 2311012082 (Tema Tonu: `--ton: 082`)
