@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "Kampüs Etkinlikleri API",
+    "description": "Sprint 7 — Backend REST API istekleri",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/health",
+        "description": "Sağlık kontrolü — student alanında öğrenci numarası döner"
+      }
+    },
+    {
+      "name": "2. Tüm Etkinlikleri Getir",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/events",
+        "description": "Tüm etkinlikleri listeler (200)"
+      }
+    },
+    {
+      "name": "3. Etkinlik Detayı (var olan id)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/events/event-1",
+        "description": "Var olan etkinliği getirir (200)"
+      }
+    },
+    {
+      "name": "4. Etkinlik Detayı (olmayan id → 404)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/events/event-999",
+        "description": "Olmayan id için 404 döner"
+      }
+    },
+    {
+      "name": "5. Yeni Etkinlik Ekle (201)",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:3001/events",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Yeni Etkinlik\",\n  \"category\": \"Seminer\",\n  \"capacity\": 50,\n  \"date\": \"2026-12-01\",\n  \"time\": \"10:00\",\n  \"location\": \"C Blok Salon 3\",\n  \"description\": \"Yeni bir etkinlik açıklaması.\"\n}"
+        },
+        "description": "Tüm alanlar dolu → 201 Created"
+      }
+    },
+    {
+      "name": "6. Yeni Etkinlik Ekle — Eksik Veri (400)",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:3001/events",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Eksik Etkinlik\"\n}"
+        },
+        "description": "Eksik alanlar → 400 Bad Request"
+      }
+    }
+  ]
+}
