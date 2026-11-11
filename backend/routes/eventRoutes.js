@@ -12,3 +12,4 @@ router.get("/:id", eventController.getEventById);
 router.post("/", eventController.createEvent);
 
 module.exports = router;
+

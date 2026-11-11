@@ -45,3 +45,4 @@ exports.createEvent = (req, res) => {
   eventList.push(newEvent);
   res.status(201).json(newEvent);
 };
+
