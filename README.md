@@ -1,11 +1,52 @@
-# Kampüs Etkinlikleri — Vize Projesi (Sprint 6)
+# Kampüs Etkinlikleri — Sprint 7 (Backend REST API)
 
 - **Canlı Yayın Linki (Vercel):** https://suedaongun-frontend.vercel.app/ *(veya https://kampus-etkinlik-krdd.vercel.app)*
 - **GitHub Deposu:** https://github.com/suedaongun/kampus-etkinlik
 - **Öğrenci:** Sueda Ongun
 - **Öğrenci No:** 2311012082 (Tema Tonu: `--ton: 082`)
 
-## 📌 Vize Projesi Kontrol Listesi & Karşılanan Maddeler
+---
+
+## 📌 Sprint 7 Teslim Kontrol Listesi & Karşılanan Maddeler
+
+| # | Madde | Durum |
+|---|-------|:-----:|
+| 1 | Backend ayrı `backend/` klasöründe | ✅ |
+| 2 | `npm install` + `npm run dev` hatasız çalışıyor | ✅ |
+| 3 | Port `.env`'den okunuyor, `.env.example` var | ✅ |
+| 4 | `.env` ve `node_modules` GitHub'da yok | ✅ |
+| 5 | Route ve controller ayrı dosyalarda | ✅ |
+| 6 | En az 5 commit, adım adım atılmış | ✅ |
+| 7 | GET `/health` JSON'unda `student` = `2311012082` | ✅ |
+| 8 | `data/events.js`'te kendi 6 etkinliğin | ✅ |
+| 9 | GET `/events` ve GET `/events/:id` çalışıyor; olmayan id 404 | ✅ |
+| 10 | POST `/events` 201; eksik veri 400 | ✅ |
+| 11 | `backend/README.md`'de REST sözleşmesi | ✅ |
+| 12 | 6 istek collection olarak `backend/requests/kampus-api.json`'da | ✅ |
+
+---
+
+## 🚀 Backend Kurulum ve Çalıştırma
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Sunucu varsayılan olarak `http://localhost:3001` adresinde çalışır (`.env` dosyasından okunur).
+
+### 📡 REST API Uç Noktaları
+
+- **GET `/health`** → Sağlık kontrolü ve öğrenci numarası doğrulaması
+- **GET `/events`** → Tüm 6 etkinliğin listesi (200 OK)
+- **GET `/events/:id`** → Belirli etkinlik detayı (200 OK) / Olmayan id (404 Not Found)
+- **POST `/events`** → Yeni etkinlik ekleme (201 Created) / Eksik veri kontrolü (400 Bad Request)
+- **Test İstekleri:** `backend/requests/kampus-api.json` içinde 6 adet hazır istek mevcuttur.
+
+---
+
+## 📌 Sprint 6 (Vize Projesi) Kontrol Listesi & Karşılanan Maddeler
 
 | # | Madde | Durum |
 |---|-------|:-----:|
@@ -23,7 +64,9 @@
 | 12 | Arama ve filtreleme çalışıyor | ✅ |
 | 13 | Form doğrulama çalışıyor (etkinlik formu, giriş, kayıt, şifremi unuttum) | ✅ |
 
-## 🗺️ 10 Adet Router (Sayfa Yönlendirmeleri)
+---
+
+## 🗺️ 10 Adet Router (Frontend Sayfa Yönlendirmeleri)
 
 1. `/` → **Ana Sayfa (HomePage)** – Yaklaşan etkinlikler ve genel bakış
 2. `/events` → **Etkinlikler (EventsPage)** – Tüm etkinliklerin listesi, arama ve filtreleme
