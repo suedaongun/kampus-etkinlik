@@ -1,4 +1,4 @@
-# Kampüs Etkinlikleri — Sprint 7 (Backend REST API)
+# Kampüs Etkinlikleri — Sprint 8 (MongoDB Atlas Entegrasyonu)
 
 - **Canlı Yayın Linki (Vercel):** https://suedaongun-frontend.vercel.app/ *(veya https://kampus-etkinlik-krdd.vercel.app)*
 - **GitHub Deposu:** https://github.com/suedaongun/kampus-etkinlik
@@ -7,7 +7,42 @@
 
 ---
 
-## 📌 Sprint 7 Teslim Kontrol Listesi & Karşılanan Maddeler
+## 📌 Sprint 8 Teslim Kontrol Listesi & Karşılanan Maddeler
+
+| # | Madde | Durum |
+|---|-------|:-----:|
+| 1 | `npm install` + `npm run dev` çalışıyor | ✅ |
+| 2 | Bağlantı ayrı modülde (`config/db.js`), URI `.env`'den okunuyor, `.env.example`'da `MONGODB_URI` var | ✅ |
+| 3 | Schema'da `required`, `trim`, `timestamps` ve kısıtlar (`minlength`, `enum`, `min`, `max`, `maxlength`) var | ✅ |
+| 4 | `npm run seed` 6 kayıt ekliyor; iki kez çalışınca da 6 kayıt kalıyor | ✅ |
+| 5 | GET `/events` ve GET `/events/:id` MongoDB'den okuyor; olmayan ve geçersiz id 404 dönüyor | ✅ |
+| 6 | POST 201 dönüyor; eksik veri 400 dönüyor ve sunucu çökmüyor | ✅ |
+| 7 | Sunucu yeniden başlayınca POST ile eklenen kayıt duruyor (kalıcı veri) | ✅ |
+
+---
+
+## 🚀 Backend Kurulum ve Çalıştırma
+
+```bash
+cd backend
+npm install
+npm run seed    # MongoDB Atlas'a 6 etkinliği yükler
+npm run dev     # Geliştirme sunucusunu başlatır (node --watch server.js)
+```
+
+Sunucu varsayılan olarak `http://localhost:3001` adresinde çalışır (`.env` dosyasından okunur).
+
+### 📡 REST API Uç Noktaları
+
+- **GET `/health`** → Sağlık kontrolü ve öğrenci numarası doğrulaması (`student: "2311012082"`)
+- **GET `/events`** → MongoDB'den tüm etkinliklerin listesi (200 OK)
+- **GET `/events/:id`** → Belirli etkinlik detayı (200 OK) / Olmayan veya geçersiz id için (404 Not Found)
+- **POST `/events`** → Yeni etkinlik ekleme (201 Created) / Eksik veri kontrolü (400 Bad Request, sunucu çökmez)
+- **Postman Koleksiyonu:** `backend/requests/kampus-api.json` içinde 6 adet test isteği mevcuttur.
+
+---
+
+## 📌 Sprint 7 Kontrol Listesi & Karşılanan Maddeler
 
 | # | Madde | Durum |
 |---|-------|:-----:|
@@ -23,26 +58,6 @@
 | 10 | POST `/events` 201; eksik veri 400 | ✅ |
 | 11 | `backend/README.md`'de REST sözleşmesi | ✅ |
 | 12 | 6 istek collection olarak `backend/requests/kampus-api.json`'da | ✅ |
-
----
-
-## 🚀 Backend Kurulum ve Çalıştırma
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-Sunucu varsayılan olarak `http://localhost:3001` adresinde çalışır (`.env` dosyasından okunur).
-
-### 📡 REST API Uç Noktaları
-
-- **GET `/health`** → Sağlık kontrolü ve öğrenci numarası doğrulaması
-- **GET `/events`** → Tüm 6 etkinliğin listesi (200 OK)
-- **GET `/events/:id`** → Belirli etkinlik detayı (200 OK) / Olmayan id (404 Not Found)
-- **POST `/events`** → Yeni etkinlik ekleme (201 Created) / Eksik veri kontrolü (400 Bad Request)
-- **Test İstekleri:** `backend/requests/kampus-api.json` içinde 6 adet hazır istek mevcuttur.
 
 ---
 

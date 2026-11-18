@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "Kampüs Etkinlikleri API",
-    "description": "Sprint 7 — Backend REST API istekleri",
+    "name": "Kampüs Etkinlikleri API — Sprint 8 (MongoDB Atlas)",
+    "description": "Sprint 8 — MongoDB Atlas Entegrasyonu REST API İstekleri",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -10,35 +10,35 @@
       "request": {
         "method": "GET",
         "url": "http://localhost:3001/health",
-        "description": "Sağlık kontrolü — student alanında öğrenci numarası döner"
+        "description": "Sağlık kontrolü — student alanında öğrenci numarası (2311012082) döner"
       }
     },
     {
-      "name": "2. Tüm Etkinlikleri Getir",
+      "name": "2. Tüm Etkinlikleri Getir (MongoDB)",
       "request": {
         "method": "GET",
         "url": "http://localhost:3001/events",
-        "description": "Tüm etkinlikleri listeler (200)"
+        "description": "MongoDB'deki tüm etkinlikleri listeler (200 OK)"
       }
     },
     {
-      "name": "3. Etkinlik Detayı (var olan id)",
+      "name": "3. Etkinlik Detayı (Var Olan ID)",
       "request": {
         "method": "GET",
-        "url": "http://localhost:3001/events/event-1",
-        "description": "Var olan etkinliği getirir (200)"
+        "url": "http://localhost:3001/events/{{eventId}}",
+        "description": "MongoDB'de var olan bir etkinliği getirir (200 OK). URL sonuna GET /events'ten alınan _id yazılır."
       }
     },
     {
-      "name": "4. Etkinlik Detayı (olmayan id → 404)",
+      "name": "4. Etkinlik Detayı (Olmayan / Geçersiz ID → 404)",
       "request": {
         "method": "GET",
-        "url": "http://localhost:3001/events/event-999",
-        "description": "Olmayan id için 404 döner"
+        "url": "http://localhost:3001/events/507f1f77bcf86cd799439011",
+        "description": "MongoDB'de olmayan veya geçersiz formatlı id için 404 döner."
       }
     },
     {
-      "name": "5. Yeni Etkinlik Ekle (201)",
+      "name": "5. Yeni Etkinlik Ekle (MongoDB Kalıcı Kayıt → 201)",
       "request": {
         "method": "POST",
         "url": "http://localhost:3001/events",
@@ -50,13 +50,13 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"title\": \"Yeni Etkinlik\",\n  \"category\": \"Seminer\",\n  \"capacity\": 50,\n  \"date\": \"2026-12-01\",\n  \"time\": \"10:00\",\n  \"location\": \"C Blok Salon 3\",\n  \"description\": \"Yeni bir etkinlik açıklaması.\"\n}"
+          "raw": "{\n  \"title\": \"Bahar Şenliği 2026\",\n  \"category\": \"Konser\",\n  \"capacity\": 500,\n  \"date\": \"2026-05-20\",\n  \"time\": \"19:00\",\n  \"location\": \"Kampüs Çim Alan\",\n  \"description\": \"Açık hava konseri ve müzik dinletisi.\"\n}"
         },
-        "description": "Tüm alanlar dolu → 201 Created"
+        "description": "Tüm alanlar dolu ve kurallara uygun → 201 Created döner ve veritabanına kalıcı yazılır."
       }
     },
     {
-      "name": "6. Yeni Etkinlik Ekle — Eksik Veri (400)",
+      "name": "6. Yeni Etkinlik Ekle — Eksik Veri (400 Bad Request)",
       "request": {
         "method": "POST",
         "url": "http://localhost:3001/events",
@@ -70,9 +70,8 @@
           "mode": "raw",
           "raw": "{\n  \"title\": \"Eksik Etkinlik\"\n}"
         },
-        "description": "Eksik alanlar → 400 Bad Request"
+        "description": "Zorunlu alanlar eksik olduğunda sunucu çökmeden 400 Bad Request döner."
       }
     }
   ]
 }
-
