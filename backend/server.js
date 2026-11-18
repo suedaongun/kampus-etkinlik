@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const connectDB = require("./config/db");
 
 const healthRoute = require("./routes/healthRoute");
 const eventRoutes = require("./routes/eventRoutes");
@@ -21,8 +22,9 @@ app.use((req, res) => {
   res.status(404).json({ error: "Route bulunamadı" });
 });
 
-// Sunucu başlat
-app.listen(PORT, () => {
-  console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`);
+// MongoDB bağlantısı ve sunucu başlatma
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`);
+  });
 });
-
