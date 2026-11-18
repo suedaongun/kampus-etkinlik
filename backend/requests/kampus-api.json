@@ -22,11 +22,11 @@
       }
     },
     {
-      "name": "3. Etkinlik Detayı (Var Olan ID)",
+      "name": "3. Etkinlik Detayı (Var Olan ID → 200 OK)",
       "request": {
         "method": "GET",
-        "url": "http://localhost:3001/events/{{eventId}}",
-        "description": "MongoDB'de var olan bir etkinliği getirir (200 OK). URL sonuna GET /events'ten alınan _id yazılır."
+        "url": "http://localhost:3001/events/6afd55c5d8365d2962f2714d",
+        "description": "MongoDB'de var olan bir etkinliği getirir (200 OK)."
       }
     },
     {
