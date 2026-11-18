@@ -22,9 +22,9 @@ app.use((req, res) => {
   res.status(404).json({ error: "Route bulunamadı" });
 });
 
-// MongoDB bağlantısı ve sunucu başlatma
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`);
-  });
+// Sunucuyu başlat ve MongoDB'ye bağlan
+app.listen(PORT, () => {
+  console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`);
 });
+
+connectDB();
