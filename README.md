@@ -1,4 +1,4 @@
-# Kampüs Etkinlikleri — Sprint 8 (MongoDB Atlas Entegrasyonu)
+# Kampüs Etkinlikleri — Sprint 9 (Tam CRUD, PATCH, DELETE ve Sorgular)
 
 - **Canlı Yayın Linki (Vercel):** https://suedaongun-frontend.vercel.app/ *(veya https://kampus-etkinlik-krdd.vercel.app)*
 - **GitHub Deposu:** https://github.com/suedaongun/kampus-etkinlik
@@ -7,17 +7,22 @@
 
 ---
 
-## 📌 Sprint 8 Teslim Kontrol Listesi & Karşılanan Maddeler
+## 📌 Sprint 9 Sözleşmesi & Karşılanan Endpoint'ler
 
-| # | Madde | Durum |
-|---|-------|:-----:|
-| 1 | `npm install` + `npm run dev` çalışıyor | ✅ |
-| 2 | Bağlantı ayrı modülde (`config/db.js`), URI `.env`'den okunuyor, `.env.example`'da `MONGODB_URI` var | ✅ |
-| 3 | Schema'da `required`, `trim`, `timestamps` ve kısıtlar (`minlength`, `enum`, `min`, `max`, `maxlength`) var | ✅ |
-| 4 | `npm run seed` 6 kayıt ekliyor; iki kez çalışınca da 6 kayıt kalıyor | ✅ |
-| 5 | GET `/events` ve GET `/events/:id` MongoDB'den okuyor; olmayan ve geçersiz id 404 dönüyor | ✅ |
-| 6 | POST 201 dönüyor; eksik veri 400 dönüyor ve sunucu çökmüyor | ✅ |
-| 7 | Sunucu yeniden başlayınca POST ile eklenen kayıt duruyor (kalıcı veri) | ✅ |
+| Method | Endpoint | Başarılı | Hata | Durum |
+|---|---|:---:|:---:|:---:|
+| **GET** | `/health` | `200` | — | ✅ çalışıyor |
+| **GET** | `/events ?search= & ?category=` | `200` | — | ✅ çalışıyor |
+| **GET** | `/events/upcoming` | `200` · tarihe göre sıralı | — | ✅ çalışıyor |
+| **GET** | `/events/:id` | `200` | `404` | ✅ çalışıyor |
+| **POST** | `/events` | `201` | `400` | ✅ çalışıyor |
+| **PATCH** | `/events/:id` | `200` · güncel kayıt | `400, 404` | ✅ çalışıyor |
+| **DELETE** | `/events/:id` | `204` · gövde yok | `404` | ✅ çalışıyor |
+
+- **Hata Formatı:** `{ "error": { "message": "…" } }`
+- **Geçersiz ya da olmayan id:** Her yerde `404 Not Found`
+- **Tarih Formatı:** Her yerde `"GG-AA-YYYY"` (örn. `"15-10-2026"`)
+- **Test Sonucu:** `newman run https://webdersi.vercel.app/test.json` ➔ **18 istek, 45 test, 0 hata** ✅
 
 ---
 
@@ -26,42 +31,29 @@
 ```bash
 cd backend
 npm install
-npm run seed    # MongoDB Atlas'a 6 etkinliği yükler
-npm run dev     # Geliştirme sunucusunu başlatır (node --watch server.js)
+npm run seed    # MongoDB Atlas'a etkinlikleri yükler (2'si geçmiş tarihli)
+npm run dev     # Geliştirme sunucusunu başlatır (node --watch src/server.js)
 ```
 
-Sunucu varsayılan olarak `http://localhost:3001` adresinde çalışır (`.env` dosyasından okunur).
-
-### 📡 REST API Uç Noktaları
-
-- **GET `/health`** → Sağlık kontrolü ve öğrenci numarası doğrulaması (`student: "2311012082"`)
-- **GET `/events`** → MongoDB'den tüm etkinliklerin listesi (200 OK)
-- **GET `/events/:id`** → Belirli etkinlik detayı (200 OK) / Olmayan veya geçersiz id için (404 Not Found)
-- **POST `/events`** → Yeni etkinlik ekleme (201 Created) / Eksik veri kontrolü (400 Bad Request, sunucu çökmez)
-- **Postman Koleksiyonu:** `backend/requests/kampus-api.json` içinde 6 adet test isteği mevcuttur.
+Sunucu varsayılan olarak `http://localhost:3000` adresinde başlar (`.env` dosyasından okunur).
 
 ---
 
-## 📌 Sprint 7 Kontrol Listesi & Karşılanan Maddeler
+## 📌 Sprint 8 Kontrol Listesi
 
 | # | Madde | Durum |
 |---|-------|:-----:|
-| 1 | Backend ayrı `backend/` klasöründe | ✅ |
-| 2 | `npm install` + `npm run dev` hatasız çalışıyor | ✅ |
-| 3 | Port `.env`'den okunuyor, `.env.example` var | ✅ |
-| 4 | `.env` ve `node_modules` GitHub'da yok | ✅ |
-| 5 | Route ve controller ayrı dosyalarda | ✅ |
-| 6 | En az 5 commit, adım adım atılmış | ✅ |
-| 7 | GET `/health` JSON'unda `student` = `2311012082` | ✅ |
-| 8 | `data/events.js`'te kendi 6 etkinliğin | ✅ |
-| 9 | GET `/events` ve GET `/events/:id` çalışıyor; olmayan id 404 | ✅ |
-| 10 | POST `/events` 201; eksik veri 400 | ✅ |
-| 11 | `backend/README.md`'de REST sözleşmesi | ✅ |
-| 12 | 6 istek collection olarak `backend/requests/kampus-api.json`'da | ✅ |
+| 1 | `npm install` + `npm run dev` çalışıyor | ✅ |
+| 2 | Bağlantı ayrı modülde (`config/db.js`), URI `.env`'den okunuyor, `.env.example`'da `MONGODB_URI` var | ✅ |
+| 3 | Schema'da `required`, `trim`, `timestamps` ve kısıtlar var | ✅ |
+| 4 | `npm run seed` 6 kayıt ekliyor; iki kez çalışınca da 6 kayıt kalıyor | ✅ |
+| 5 | GET `/events` ve GET `/events/:id` MongoDB'den okuyor; olmayan ve geçersiz id 404 dönüyor | ✅ |
+| 6 | POST 201 dönüyor; eksik veri 400 dönüyor ve sunucu çökmüyor | ✅ |
+| 7 | Sunucu yeniden başlayınca POST ile eklenen kayıt duruyor | ✅ |
 
 ---
 
-## 📌 Sprint 6 (Vize Projesi) Kontrol Listesi & Karşılanan Maddeler
+## 📌 Sprint 6 (Vize Projesi) Kontrol Listesi & Router Haritası
 
 | # | Madde | Durum |
 |---|-------|:-----:|
@@ -70,26 +62,11 @@ Sunucu varsayılan olarak `http://localhost:3001` adresinde çalışır (`.env` 
 | 3 | Klasör ve dosya yapısı oluşturuldu | ✅ |
 | 4 | 10 adet router tanımlandı | ✅ |
 | 5 | Context kullanıldı ve tüm sayfalara bağlandı | ✅ |
-| 6 | Ekle, sil, güncelle ve silmeden önce onay çalışıyor; etkisi diğer sayfalarda görülüyor | ✅ |
+| 6 | Ekle, sil, güncelle ve silmeden önce onay çalışıyor | ✅ |
 | 7 | Son çalışır proje GitHub'a gönderildi | ✅ |
 | 8 | Proje Vercel'de isimsoyisim-frontend.vercel.app adresiyle yayında | ✅ |
 | 9 | README yazıldı, Vercel linki README'ye eklendi | ✅ |
 | 10 | Mobil görünüm doğru çalışıyor | ✅ |
 | 11 | CSS bozulması yok. Sayfa düzgün görünüyor | ✅ |
 | 12 | Arama ve filtreleme çalışıyor | ✅ |
-| 13 | Form doğrulama çalışıyor (etkinlik formu, giriş, kayıt, şifremi unuttum) | ✅ |
-
----
-
-## 🗺️ 10 Adet Router (Frontend Sayfa Yönlendirmeleri)
-
-1. `/` → **Ana Sayfa (HomePage)** – Yaklaşan etkinlikler ve genel bakış
-2. `/events` → **Etkinlikler (EventsPage)** – Tüm etkinliklerin listesi, arama ve filtreleme
-3. `/events/:id` → **Etkinlik Detayı (EventDetailPage)** – Seçilen etkinliğin detay sayfası
-4. `/admin` → **Yönetim Paneli (AdminPage)** – Etkinlikleri yönetme tablosu
-5. `/admin/new` → **Yeni Etkinlik Ekle (AddEventPage)** – Yeni etkinlik ekleme formu
-6. `/admin/:id/edit` → **Etkinlik Düzenle (EditEventPage)** – Mevcut etkinliği güncelleme formu
-7. `/login` → **Giriş (LoginPage)** – Kullanıcı giriş sayfası
-8. `/register` → **Kayıt Ol (RegisterPage)** – Yeni kullanıcı kayıt sayfası
-9. `/forgot-password` → **Şifremi Unuttum (ForgotPasswordPage)** – Şifre sıfırlama sayfası
-10. `*` → **404 Sayfa Bulunamadı (NotFoundPage)** – Tanımsız adresler için hata sayfası
+| 13 | Form doğrulama çalışıyor | ✅ |
