@@ -1,12 +1,14 @@
 {
   "name": "kampus-etkinlik-backend",
   "version": "1.0.0",
-  "description": "Kampüs Etkinlikleri REST API — Sprint 8 (MongoDB)",
-  "main": "server.js",
+  "description": "Kampüs Etkinlikleri REST API — Sprint 9 (Tam CRUD, PATCH, DELETE ve Sorgular)",
+  "type": "module",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
-    "seed": "node seed.js"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js",
+    "test": "newman run https://webdersi.vercel.app/test.json"
   },
   "dependencies": {
     "cors": "^2.8.5",
